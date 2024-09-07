@@ -5,7 +5,11 @@ export default function Button({ buttonText }) {
   return (
     <button className={styles.button}>
       <span>{buttonText}</span>
-      <img src={RightArrow} alt="arrow-right" />
+      {buttonText !== "Start" || "Start Again" ? (
+        <img src={RightArrow} alt="arrow-right" />
+      ) : (
+        ""
+      )}
     </button>
   );
 }
