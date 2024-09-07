@@ -7,7 +7,6 @@ import Report from "./pages/Report";
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/questions" element={<Questions />} />

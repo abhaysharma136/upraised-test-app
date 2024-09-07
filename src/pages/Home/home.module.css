@@ -1,0 +1,29 @@
+.pageContainer {
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(175, 156, 243, 0) 7.92%, #AF9CF3 86.48%);
+    background-blend-mode: multiply;
+
+}
+
+.quizCircle {
+    width: 432px;
+    height: 392px;
+    background-color: #FFF;
+    color: #FF3B3C;
+    box-shadow: 0px 8px 8px 0px #0000001A;
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.logoImage {
+    width: 291px;
+    height: 70px;
+}
