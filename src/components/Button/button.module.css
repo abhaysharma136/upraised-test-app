@@ -1,0 +1,21 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 630px;
+    height: 120px;
+    background: #FF3B3F;
+    border: none;
+    border-radius: 75px;
+    font-size: 48px;
+    color: #FFF;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+}
+
+.button img {
+    position: absolute;
+    right: 30px;
+    /* Move the arrow icon to the far right */
+}

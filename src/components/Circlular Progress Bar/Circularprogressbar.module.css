@@ -1,0 +1,29 @@
+.circularOuterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+
+.circularOuterDiv {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    background: conic-gradient(#44B77B 3.6deg, #F3F4FA 0deg);
+    border-radius: 50%;
+}
+
+.circularOuterDiv::before {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
