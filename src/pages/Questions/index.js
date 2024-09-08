@@ -88,7 +88,8 @@ export default function Questions() {
         { id: 5, value: "None" },
       ],
       answer: "All of them",
-      image: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L2pvYjk2MS0wMTY4LXAucG5n.png",
+      image:
+        "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L2pvYjk2MS0wMTY4LXAucG5n.png",
     },
     {
       id: 7,
@@ -173,6 +174,7 @@ export default function Questions() {
     if (sessionId) {
       fetchSessionData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId]);
 
   // Handle option selection

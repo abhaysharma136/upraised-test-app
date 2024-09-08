@@ -50,6 +50,7 @@ export default function Report() {
     if (sessionId) {
       fetchSessionData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId]);
 
   // Function to calculate the number of correct and wrong answers
