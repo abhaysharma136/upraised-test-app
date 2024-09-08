@@ -4,6 +4,7 @@ export default function QuestionBox({
   option,
   selectedOption,
   onOptionChange,
+  value,
 }) {
   return (
     <div className={styles.questionBox}>
@@ -11,7 +12,7 @@ export default function QuestionBox({
         type="radio"
         id="option"
         name="option"
-        value={option}
+        value={value}
         checked={selectedOption === option}
         onChange={() => onOptionChange(option)}
       />

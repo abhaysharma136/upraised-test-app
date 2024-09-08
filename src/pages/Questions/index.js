@@ -3,8 +3,8 @@ import CircularProgressBar from "../../components/Circlular Progress Bar";
 import styles from "../Questions/questions.module.css";
 import QuestionBox from "../../components/QuestionContainer";
 import Button from "../../components/Button";
-import { getData, postData } from "../../api/api";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getData, putData } from "../../api/api"; // Assume putData is your API function to send PUT requests
 
 export default function Questions() {
   const navigate = useNavigate();
@@ -14,109 +14,130 @@ export default function Questions() {
       question:
         "How do you judge what should be added in the next version of the app?",
       options: [
-        {
-          id: 1,
-          value: "Data Analysis",
-        },
-        {
-          id: 2,
-          value: "Copy from similar product",
-        },
-        {
-          id: 3,
-          value: "User’s feedback",
-        },
-        {
-          id: 4,
-          value: "Make a questionary",
-        },
-        {
-          id: 5,
-          value: "Personal feeling",
-        },
+        { id: 1, value: "Data Analysis" },
+        { id: 2, value: "Copy from similar product" },
+        { id: 3, value: "User’s feedback" },
+        { id: 4, value: "Make a questionary" },
+        { id: 5, value: "Personal feeling" },
       ],
+      answer: "User’s feedback",
     },
     {
       id: 2,
       question:
         "How do you judge what should not be added in the next version of the app?",
       options: [
-        {
-          id: 1,
-          value: "Data Analysis2",
-        },
-        {
-          id: 2,
-          value: "Copy from similar product2",
-        },
-        {
-          id: 3,
-          value: "User’s feedback2",
-        },
-        {
-          id: 4,
-          value: "Make a questionary2",
-        },
-        {
-          id: 5,
-          value: "Personal feeling2",
-        },
+        { id: 1, value: "Data Analysis2" },
+        { id: 2, value: "Copy from similar product2" },
+        { id: 3, value: "User’s feedback2" },
+        { id: 4, value: "Make a questionary2" },
+        { id: 5, value: "Personal feeling2" },
       ],
+      answer: "Copy from similar product2",
     },
   ];
 
-  let [currentQuestionId, setCurrentQuestionId] = useState(1); //Track the current question
-  const [ifExists, setIfExists] = useState();
+  const location = useLocation(); // Get the location object
+  const [sessionId, setSessionId] = useState(null);
+  const [sessionData, setSessionData] = useState(null); // Store the session data
+  const [currentQuestionId, setCurrentQuestionId] = useState(1); // Track the current question
   const [selectedOption, setSelectedOption] = useState(null); // Track selected option
-  const date = new Date();
-  const startTime = date.getTime();
-  const initializeQuiz = async () => {
-    try {
-      await postData("/feedback", {
-        user_id: 45,
-        questionsData: [],
-        start_data: startTime,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  let checkIfExists = async () => {
-    try {
-      let response = await getData("/feedback");
-      setIfExists(response?.id);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const [startTime, setStartTime] = useState(new Date().getTime()); // Track question start time
+
+  // Extract sessionId from query parameters
   useEffect(() => {
-    checkIfExists();
-    if (ifExists) {
-      initializeQuiz();
+    const queryParams = new URLSearchParams(location.search);
+    const sessionIdFromUrl = queryParams.get("sessionId");
+    if (sessionIdFromUrl) {
+      setSessionId(sessionIdFromUrl);
     }
-  }, []);
+  }, [location.search]);
 
-  // handle the logic for next questions button
-  const handleNextQuestion = () => {
-    if (currentQuestionId < questionsData.length) {
-      setCurrentQuestionId(currentQuestionId + 1);
-      console.log("answer", selectedOption);
-    } else {
-      console.log("answer", selectedOption);
-      navigate("/report");
+  // Fetch the current session object
+  const fetchSessionData = async () => {
+    try {
+      let response = await getData(`/feedback/${sessionId}`);
+      setSessionData(response);
+      console.log("Fetched session data:", response);
+    } catch (err) {
+      console.error(err);
     }
   };
 
-  let currentQuestionObject = questionsData.find(
-    (q) => q.id === currentQuestionId
-  );
+  // Fetch session data when sessionId is available
+  useEffect(() => {
+    if (sessionId) {
+      fetchSessionData();
+    }
+  }, [sessionId]);
 
   // Handle option selection
   const handleOptionChange = (option) => {
-    setSelectedOption(option); // Update the selected option
+    setSelectedOption(option);
   };
 
-  //handleUpdate Answer
+  // Update the session with answers on each question submission
+  const handleNextQuestion = async () => {
+    const endTime = new Date().getTime();
+    const timeTaken = endTime - startTime;
+
+    // Find the correct answer for the current question
+    const currentQuestion = questionsData.find(
+      (q) => q.id === currentQuestionId
+    );
+    const isCorrect = selectedOption === currentQuestion.answer;
+    console.log("Current answer: ", selectedOption);
+    // Prepare the answer object for the current question
+    const currentAnswer = {
+      id: currentQuestionId,
+      correct_value: selectedOption || "", // Use the selected option
+      time_taken: timeTaken,
+      isCorrect: isCorrect, // Add whether the answer is correct
+    };
+
+    // Initialize updatedQuestionsData to the existing questionsData from the session
+    let updatedQuestionsData = sessionData?.questionsData || [];
+
+    // Check if the question has already been answered
+    const questionIndex = updatedQuestionsData.findIndex(
+      (q) => q.id === currentQuestionId
+    );
+
+    if (questionIndex >= 0) {
+      // If the question was already answered, update the existing entry
+      updatedQuestionsData[questionIndex] = currentAnswer;
+    } else {
+      // If it's a new answer, add it to the array
+      updatedQuestionsData.push(currentAnswer);
+    }
+
+    // Update the session data with the new questionsData array
+    const updatedSessionData = {
+      ...sessionData,
+      questionsData: updatedQuestionsData,
+    };
+
+    try {
+      // Send PUT request to update session
+      await putData(`/feedback/${sessionId}`, updatedSessionData);
+      console.log("Updated session data:", updatedSessionData);
+    } catch (err) {
+      console.error("Error updating session:", err);
+    }
+
+    // Move to the next question or navigate to the report
+    if (currentQuestionId < questionsData.length) {
+      setCurrentQuestionId(currentQuestionId + 1);
+      setStartTime(new Date().getTime()); // Reset start time for next question
+    } else {
+      navigate(`/report?sessionId=${sessionId}`);
+    }
+  };
+
+  // Find the current question object
+  const currentQuestionObject = questionsData.find(
+    (q) => q.id === currentQuestionId
+  );
 
   return (
     <div className={styles.questionMainDiv}>
@@ -132,14 +153,12 @@ export default function Questions() {
               key={optionIndex}
               selectedOption={selectedOption}
               onOptionChange={handleOptionChange}
+              value={option?.id}
             />
           ))}
         </div>
       </div>
-      <div
-        onClick={() => handleNextQuestion()}
-        className={styles.buttonContainer}
-      >
+      <div onClick={handleNextQuestion} className={styles.buttonContainer}>
         <Button buttonText="Next" />
       </div>
     </div>

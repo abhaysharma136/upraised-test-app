@@ -18,11 +18,31 @@ export default function Home() {
       console.error("Error starting the quiz", err);
     }
   };
+
+  //Initialize the quiz
+  const date = new Date();
+  const startTime = date.getTime();
+  const initializeQuiz = async () => {
+    try {
+      await postData("/feedback", {
+        user_id: 45,
+        questionsData: [],
+        start_data: startTime,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleSubmit = () => {
+    startQuiz();
+    initializeQuiz();
+  };
   return (
     <div className={styles.pageContainer}>
       <img src={logo} alt="logo" className={styles.logoImage} />
       <div className={styles.quizCircle}>Quiz</div>
-      <div onClick={() => startQuiz()} className={styles.buttonContainer}>
+      <div onClick={() => handleSubmit()} className={styles.buttonContainer}>
         <Button buttonText="Start" />
       </div>
     </div>

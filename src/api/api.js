@@ -20,3 +20,14 @@ export const getData = async (url) => {
     throw error;
   }
 };
+
+//PUT request
+export const putData = async (url, data) => {
+  try {
+    const response = await axiosInstance.put(url, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error in PUT request:", error);
+    throw error;
+  }
+};
