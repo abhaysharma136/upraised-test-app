@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import styles from "../Report/report.module.css";
 import ResponseBox from "../../components/ResponseBox";
 import Button from "../../components/Button";
-import CircularProgressBar from "../../components/Circlular Progress Bar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getData, postData } from "../../api/api";
+import CircularPercentageBar from "../../components/Circular percentage Bar";
 
 export default function Report() {
   const navigate = useNavigate();
@@ -107,7 +107,13 @@ export default function Report() {
       <div className={styles.innerLayout}>
         <h2>Your result</h2>
         <div className={styles.resultCircularProgress}>
-          <CircularProgressBar />
+          <CircularPercentageBar
+            progress={
+              (answerStats.correctAnswers /
+                (answerStats.correctAnswers + answerStats.wrongAnswers)) *
+              100
+            }
+          />
         </div>
 
         <ResponseBox

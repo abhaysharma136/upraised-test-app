@@ -19,3 +19,10 @@
     right: 30px;
     /* Move the arrow icon to the far right */
 }
+
+.button:disabled {
+    background: #A9A9A9;
+    /* Disabled background color */
+    cursor: not-allowed;
+    color: #FFFFFF;
+}

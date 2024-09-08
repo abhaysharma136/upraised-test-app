@@ -145,7 +145,11 @@ export default function Questions() {
   return (
     <div className={styles.questionMainDiv}>
       <div className={styles.circularProgressBarContainer}>
-        <CircularProgressBar />
+        <CircularProgressBar
+          progress={(currentQuestionId / questionsData.length) * 100}
+          currentStep={currentQuestionId}
+          totalSteps={questionsData.length}
+        />
       </div>
       <div className={styles.innerLayout}>
         <h1>{currentQuestionObject?.question}</h1>
