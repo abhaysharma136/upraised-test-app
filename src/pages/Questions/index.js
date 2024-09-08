@@ -163,7 +163,6 @@ export default function Questions() {
     try {
       let response = await getData(`/feedback/${sessionId}`);
       setSessionData(response);
-      console.log("Fetched session data:", response);
     } catch (err) {
       console.error(err);
     }
@@ -227,7 +226,6 @@ export default function Questions() {
     try {
       // Send PUT request to update session
       await putData(`/feedback/${sessionId}`, updatedSessionData);
-      console.log("Updated session data:", updatedSessionData);
     } catch (err) {
       console.error("Error updating session:", err);
     }

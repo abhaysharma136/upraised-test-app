@@ -40,7 +40,6 @@ export default function Report() {
     try {
       let response = await getData(`/feedback/${sessionId}`);
       setSessionData(response);
-      console.log("Fetched session data:", response);
     } catch (err) {
       console.error(err);
     }
@@ -52,8 +51,6 @@ export default function Report() {
       fetchSessionData();
     }
   }, [sessionId]);
-
-  console.log("Session data fetched", sessionData);
 
   // Function to calculate the number of correct and wrong answers
   const getAnswerStats = (sessionData) => {
