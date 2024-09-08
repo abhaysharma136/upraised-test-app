@@ -50,4 +50,9 @@
         width: 200px;
         height: 200px;
     }
+
+    .buttonContainer {
+        width: 80%;
+        height: 60px;
+    }
 }
