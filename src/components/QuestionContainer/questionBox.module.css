@@ -9,7 +9,7 @@
     border-radius: 15px;
 }
 
-input[type="checkbox"] {
+input[type="radio"] {
     width: 1.5rem;
     /* Set width and height to make the checkbox larger */
     height: 1.5rem;
@@ -27,12 +27,12 @@ input[type="checkbox"] {
     margin-left: 25px;
 }
 
-nput[type="checkbox"]:checked {
+nput[type="radio"]:checked {
     background-color: green;
     /* Background color when checked */
 }
 
-input[type="checkbox"]:before {
+input[type="radio"]:before {
     content: "";
     position: absolute;
     top: 50%;
@@ -45,7 +45,7 @@ input[type="checkbox"]:before {
     transition: 0.2s;
 }
 
-input[type="checkbox"]:checked:before {
+input[type="radio"]:checked:before {
     background-color: green;
     transform: translate(-50%, -50%) scale(0.9);
     /* Shrink the inner circle when checked */
