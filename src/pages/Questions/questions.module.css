@@ -4,9 +4,17 @@
     background: #AF9CF3;
     background-blend-mode: multiply;
     height: 100vh;
-    width: 750px;
-    justify-content: center;
+    width: 390px;
+    justify-content: flex-end;
     align-items: center;
+    box-sizing: border-box;
+}
+
+.circularProgressBarContainer {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 35px;
 }
 
 .innerLayout {
@@ -16,14 +24,79 @@
     width: 100%;
     border-radius: 25px 25px 0 0;
     padding: 20px;
+    overflow-y: scroll;
+    padding-bottom: 80px 0;
 }
 
 .innerLayout h1 {
+    font-size: 18px;
     text-align: left;
 }
 
 .questionsContainer {
     display: flex;
+    height: 80%;
     flex-direction: column;
     gap: 15px;
+}
+
+.buttonContainer {
+    position: fixed;
+    width: 90%;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+@media (min-width:480px) {
+    .questionMainDiv {
+        width: 100%;
+    }
+
+    .innerLayout {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .innerLayout h1 {
+        font-size: 30px;
+        max-width: 85%;
+    }
+
+    .questionsContainer {
+        display: flex;
+        width: 85%;
+        height: 80%;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .buttonContainer {
+        position: fixed;
+        width: 85%;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+}
+
+@media (min-width:879px) {
+    .circularProgressBarContainer {
+        width: 220px;
+        height: 220px;
+        position: absolute;
+        top: 35px;
+    }
+
+    .innerLayout {
+        padding: 91px 0;
+    }
+
+    .buttonContainer {
+        width: 85%;
+        height: 60px;
+    }
+
+
 }

@@ -5,8 +5,13 @@
     gap: 10px;
     background: #F3F4FA;
     width: 100%;
-    height: 80px;
+    height: 50px;
     border-radius: 15px;
+}
+
+.questionBox h3 {
+    font-size: 18px;
+    text-align: left;
 }
 
 input[type="radio"] {

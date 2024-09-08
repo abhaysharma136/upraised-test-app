@@ -117,10 +117,12 @@ export default function Questions() {
   };
 
   //handleUpdate Answer
-  
+
   return (
     <div className={styles.questionMainDiv}>
-      <CircularProgressBar />
+      <div className={styles.circularProgressBarContainer}>
+        <CircularProgressBar />
+      </div>
       <div className={styles.innerLayout}>
         <h1>{currentQuestionObject?.question}</h1>
         <div className={styles.questionsContainer}>
@@ -134,7 +136,10 @@ export default function Questions() {
           ))}
         </div>
       </div>
-      <div onClick={() => handleNextQuestion()}>
+      <div
+        onClick={() => handleNextQuestion()}
+        className={styles.buttonContainer}
+      >
         <Button buttonText="Next" />
       </div>
     </div>
