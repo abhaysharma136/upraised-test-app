@@ -23,9 +23,13 @@ export default function Report() {
     <div className={styles.reportMainDiv}>
       <div className={styles.innerLayout}>
         <h2>Your result</h2>
-        <CircularProgressBar />
+        <div className={styles.resultCircularProgress}>
+          <CircularProgressBar />
+        </div>
+
         <ResponseBox />
-        <div onClick={() => startQuiz()}>
+
+        <div onClick={() => startQuiz()} className={styles.buttonContainer}>
           <Button buttonText="Start Again" />
         </div>
       </div>

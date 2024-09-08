@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 400px;
-    gap: 40px;
+    height: 250px;
+    gap: 20px;
 }
 
 .correctResponseContainer {
@@ -11,8 +11,8 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 80px;
-    border-radius: 20px;
+    height: 60px;
+    border-radius: 5px;
     background: #44B77B;
     opacity: 0.7;
     gap: 10px;
@@ -23,8 +23,8 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 80px;
-    border-radius: 20px;
+    height: 60px;
+    border-radius: 5px;
     background: #FF3B3F;
     opacity: 0.7;
     gap: 10px;
