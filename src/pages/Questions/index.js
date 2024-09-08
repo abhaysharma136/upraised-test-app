@@ -78,6 +78,8 @@ export default function Questions() {
 
   // Update the session with answers on each question submission
   const handleNextQuestion = async () => {
+    if (!selectedOption) return; // Ensure the user has selected an option
+
     const endTime = new Date().getTime();
     const timeTaken = endTime - startTime;
 
@@ -86,7 +88,7 @@ export default function Questions() {
       (q) => q.id === currentQuestionId
     );
     const isCorrect = selectedOption === currentQuestion.answer;
-    console.log("Current answer: ", selectedOption);
+
     // Prepare the answer object for the current question
     const currentAnswer = {
       id: currentQuestionId,
@@ -128,6 +130,7 @@ export default function Questions() {
     // Move to the next question or navigate to the report
     if (currentQuestionId < questionsData.length) {
       setCurrentQuestionId(currentQuestionId + 1);
+      setSelectedOption(null); // Reset the selected option for the next question
       setStartTime(new Date().getTime()); // Reset start time for next question
     } else {
       navigate(`/report?sessionId=${sessionId}`);
@@ -158,8 +161,9 @@ export default function Questions() {
           ))}
         </div>
       </div>
-      <div onClick={handleNextQuestion} className={styles.buttonContainer}>
-        <Button buttonText="Next" />
+      <div className={styles.buttonContainer} onClick={handleNextQuestion}>
+        {/* Disable the button if no option is selected */}
+        <Button buttonText="Next" disabled={!selectedOption} />
       </div>
     </div>
   );
