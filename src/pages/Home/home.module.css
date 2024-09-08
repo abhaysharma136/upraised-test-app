@@ -1,5 +1,6 @@
 .pageContainer {
-    width: 750px;
+    box-sizing: border-box;
+    width: 390px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -7,12 +8,12 @@
     height: 100vh;
     background: linear-gradient(180deg, rgba(175, 156, 243, 0) 7.92%, #AF9CF3 86.48%);
     background-blend-mode: multiply;
-
+    padding: 20px 0;
 }
 
 .quizCircle {
-    width: 432px;
-    height: 392px;
+    width: 250px;
+    height: 200px;
     background-color: #FFF;
     color: #FF3B3C;
     box-shadow: 0px 8px 8px 0px #0000001A;
@@ -24,6 +25,50 @@
 }
 
 .logoImage {
-    width: 291px;
-    height: 70px;
+    width: 200px;
+    height: 60px;
+}
+
+.buttonContainer {
+    width: 90%;
+    height: 60px;
+}
+
+@media (min-width:480px) {
+    .pageContainer {
+        width: 100%;
+    }
+
+    .quizCircle {
+        width: 350px;
+        height: 280px;
+    }
+
+    .logoImage {
+        width: 200px;
+        height: 60px;
+    }
+
+    .buttonContainer {
+        width: 90%;
+        height: 60px;
+    }
+
+    .logoImage {
+        width: 250px;
+        height: 80px;
+    }
+}
+
+@media (min-width:879px) {
+    .quizCircle {
+        width: 450px;
+        height: 400px;
+    }
+
+    .buttonContainer {
+        width: 70%;
+        height: 60px;
+    }
+
 }

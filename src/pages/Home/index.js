@@ -22,7 +22,7 @@ export default function Home() {
     <div className={styles.pageContainer}>
       <img src={logo} alt="logo" className={styles.logoImage} />
       <div className={styles.quizCircle}>Quiz</div>
-      <div onClick={() => startQuiz()}>
+      <div onClick={() => startQuiz()} className={styles.buttonContainer}>
         <Button buttonText="Start" />
       </div>
     </div>
