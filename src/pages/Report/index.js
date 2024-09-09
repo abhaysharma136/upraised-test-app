@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getData, postData } from "../../api/api";
 import CircularPercentageBar from "../../components/Circular percentage Bar";
+import Confetti from "react-confetti";
 
 export default function Report() {
   const navigate = useNavigate();
@@ -100,8 +101,44 @@ export default function Report() {
     startQuiz();
     initializeQuiz();
   };
+
+  //Function to get window width and height
+
+  function useWindowSize() {
+    const [windowSize, setWindowSize] = useState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
+    useEffect(() => {
+      // Handler to call on window resize
+      function handleResize() {
+        setWindowSize({
+          width: window.innerWidth - 50,
+          height: window.innerHeight - 50,
+        });
+      }
+
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }, []); // Empty array ensures this effect is only run on mount
+
+    return windowSize;
+  }
+  const { width, height } = useWindowSize();
+  let winPercentage =
+    (answerStats.correctAnswers /
+      (answerStats.correctAnswers + answerStats.wrongAnswers)) *
+    100;
   return (
     <div className={styles.reportMainDiv}>
+      {winPercentage && winPercentage>=50?<Confetti width={width} height={height} />:null}
       <div className={styles.innerLayout}>
         <h2>Your result</h2>
         <div className={styles.resultCircularProgress}>
