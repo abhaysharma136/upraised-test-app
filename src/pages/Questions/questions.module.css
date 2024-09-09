@@ -1,127 +1,117 @@
+/* Main container for the entire question layout */
 .questionMainDiv {
     display: flex;
     flex-direction: column;
     background: #AF9CF3;
     background-blend-mode: multiply;
     height: 100vh;
-    width: 390px;
+    width: 100%; /* Full width for better responsiveness */
     justify-content: flex-end;
     align-items: center;
     box-sizing: border-box;
 }
 
+/* Circular Progress Bar Container */
 .circularProgressBarContainer {
-    width: 150px;
-    height: 150px;
+    width: 120px; /* Adjusted for mobile */
+    height: 120px; /* Adjusted for mobile */
     position: absolute;
-    top: 35px;
+    top: 80px; /* Adjusted for mobile */
 }
 
+/* Inner layout container with padding and scrollable content */
 .innerLayout {
     box-sizing: border-box;
     background: #FFF;
     height: 80%;
     width: 100%;
-    border-radius: 25px 25px 0 25;
+    border-radius: 60px 60px 0 0; /* Proper border-radius for rounded corners */
     padding: 20px;
-    overflow-y: scroll;
-    padding-bottom: 80px 0;
+    overflow-y: auto;
+    padding-bottom: 80px;
     padding-top: 50px;
 }
 
 .innerLayout h1 {
-    font-size: 18px;
+    font-size: 16px; /* Adjust font size for smaller screens */
     text-align: left;
+    line-height: 1.5; /* Ensure readability on mobile */
+    word-wrap: break-word; /* Ensure long text breaks properly */
 }
 
+/* Question image container */
 .questionImageContainer {
-    width: 90%;
-    height: 180px;
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Adjust height for image aspect ratio */
+    margin: 10px 0; /* Add margin for spacing */
 }
 
 .questionImage {
-    width: 100%;
-    height: 100%;
+    width: 100%; /* Full width for images */
+    height: auto; /* Maintain image aspect ratio */
 }
 
+/* Container for the questions */
 .questionsContainer {
     display: flex;
-    height: 80%;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     padding-bottom: 50px;
 }
 
+/* Button container fixed at the bottom */
 .buttonContainer {
     position: fixed;
-    width: 90%;
-    height: 60px;
-    margin-bottom: 20px;
+    bottom: 10px; /* Ensure the button stays at the bottom */
+    width: 90%; /* Make the button wide enough for mobile screens */
+    height: 50px; /* Reduced height for smaller screens */
+    margin-bottom: 10px;
 }
 
-@media (min-width:480px) {
+/* Media query for larger mobile devices (min-width: 480px) */
+@media (min-width: 480px) {
     .questionMainDiv {
         width: 100%;
     }
 
-    .innerLayout {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-top: 220px;
-    }
-
-    .innerLayout h1 {
-        font-size: 30px;
-        max-width: 85%;
-    }
-
-    .questionsContainer {
-        display: flex;
-        width: 85%;
-        height: 80%;
-        flex-direction: column;
-        gap: 15px;
-        padding-bottom: 130px;
-    }
-
-    .questionImageContainer {
-        width: 400px;
-    }
-
-    .questionImage {
-        width: 100%;
-    }
-
-    .buttonContainer {
-        position: fixed;
-        width: 85%;
-        height: 60px;
-        margin-bottom: 20px;
-    }
-
-}
-
-@media (min-width:879px) {
     .circularProgressBarContainer {
-        width: 220px;
-        height: 220px;
-        position: absolute;
+        width: 150px;
+        height: 150px;
         top: 35px;
     }
 
     .innerLayout {
-        padding-top: 350px;
+        padding-top: 60px;
+        padding-bottom: 100px;
+    }
+
+    .innerLayout h1 {
+        font-size: 18px;
     }
 
     .buttonContainer {
-        width: 85%;
+        width: 90%;
         height: 60px;
     }
+}
 
-    .questionsContainer {
-        padding-bottom: 250px;
+/* Media query for tablets or larger screens (min-width: 768px) */
+@media (min-width: 768px) {
+    .questionMainDiv {
+        width: 100%; /* Reduce width to center it on tablets */
     }
 
+    .innerLayout h1 {
+        font-size: 20px; /* Increase font size for tablets */
+    }
+
+    .circularProgressBarContainer {
+        width: 180px;
+        height: 180px;
+    }
+
+    .buttonContainer {
+        width: 80%; /* Reduce width on larger screens */
+        height: 60px;
+    }
 }
