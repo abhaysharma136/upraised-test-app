@@ -1,6 +1,6 @@
 ## Live Website
 
-Check out the live version of the application here: [Live Demo](https://66dedd8241f5c50008783c31--upraised-quiz-test.netlify.app/)
+Check out the live version of the application here: [Live Demo](https://upraised-quiz-test.netlify.app/)
 
 
 
