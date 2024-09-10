@@ -7,16 +7,21 @@ export default function QuestionBox({
   value,
 }) {
   return (
-    <div className={styles.questionBox}>
-      <input
-        type="radio"
-        id="option"
-        name="option"
-        value={value}
-        checked={selectedOption === option}
-        onChange={() => onOptionChange(option)}
-      />
-      <h3>{option}</h3>
-    </div>
+    <label
+      className={styles.questionBox}
+      onClick={() => onOptionChange(option)}
+    >
+      <div className={styles.questionBox}>
+        <input
+          type="radio"
+          id="option"
+          name="option"
+          value={value}
+          checked={selectedOption === option}
+          onChange={() => onOptionChange(option)}
+        />
+        <h3>{option}</h3>
+      </div>
+    </label>
   );
 }

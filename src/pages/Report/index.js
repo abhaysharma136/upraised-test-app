@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getData, postData } from "../../api/api";
 import CircularPercentageBar from "../../components/Circular percentage Bar";
 import Confetti from "react-confetti";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function Report() {
   const navigate = useNavigate();
@@ -137,29 +138,51 @@ export default function Report() {
       (answerStats.correctAnswers + answerStats.wrongAnswers)) *
     100;
   return (
-    <div className={styles.reportMainDiv}>
-      {winPercentage && winPercentage>=50?<Confetti width={width} height={height} />:null}
-      <div className={styles.innerLayout}>
-        <h2>Your result</h2>
-        <div className={styles.resultCircularProgress}>
-          <CircularPercentageBar
-            progress={
-              (answerStats.correctAnswers /
-                (answerStats.correctAnswers + answerStats.wrongAnswers)) *
-              100
-            }
+    <>
+      {winPercentage ? (
+        <div className={styles.reportMainDiv}>
+          {winPercentage && winPercentage >= 50 ? (
+            <Confetti width={width} height={height} />
+          ) : null}
+          <div className={styles.innerLayout}>
+            <h2>Your result</h2>
+            <div className={styles.resultCircularProgress}>
+              <CircularPercentageBar
+                progress={
+                  (answerStats.correctAnswers /
+                    (answerStats.correctAnswers + answerStats.wrongAnswers)) *
+                  100
+                }
+              />
+            </div>
+
+            <ResponseBox
+              correctAnswers={answerStats.correctAnswers}
+              wrongAnswers={answerStats.wrongAnswers}
+            />
+
+            <div
+              onClick={() => handleSubmit()}
+              className={styles.buttonContainer}
+            >
+              <Button buttonText="Start Again" />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="loaderContainer">
+          <ThreeDots
+            visible={true}
+            height="80"
+            width="80"
+            color="#4fa94d"
+            radius="9"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
           />
         </div>
-
-        <ResponseBox
-          correctAnswers={answerStats.correctAnswers}
-          wrongAnswers={answerStats.wrongAnswers}
-        />
-
-        <div onClick={() => handleSubmit()} className={styles.buttonContainer}>
-          <Button buttonText="Start Again" />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
