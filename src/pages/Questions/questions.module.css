@@ -5,7 +5,8 @@
     background: #AF9CF3;
     background-blend-mode: multiply;
     height: 100vh;
-    width: 100%; /* Full width for better responsiveness */
+    width: 100%;
+    /* Full width for better responsiveness */
     justify-content: flex-end;
     align-items: center;
     box-sizing: border-box;
@@ -13,10 +14,13 @@
 
 /* Circular Progress Bar Container */
 .circularProgressBarContainer {
-    width: 120px; /* Adjusted for mobile */
-    height: 120px; /* Adjusted for mobile */
+    width: 120px;
+    /* Adjusted for mobile */
+    height: 120px;
+    /* Adjusted for mobile */
     position: absolute;
-    top: 80px; /* Adjusted for mobile */
+    top: 80px;
+    /* Adjusted for mobile */
 }
 
 /* Inner layout container with padding and scrollable content */
@@ -25,31 +29,40 @@
     background: #FFF;
     height: 80%;
     width: 100%;
-    border-radius: 60px 60px 0 0; /* Proper border-radius for rounded corners */
+    border-radius: 60px 60px 0 0;
+    /* Proper border-radius for rounded corners */
     padding: 20px;
     overflow-y: auto;
     padding-bottom: 80px;
     padding-top: 50px;
-    
+
 }
 
 .innerLayout h1 {
-    font-size: 16px; /* Adjust font size for smaller screens */
+    font-size: 16px;
+    /* Adjust font size for smaller screens */
     text-align: left;
-    line-height: 1.5; /* Ensure readability on mobile */
-    word-wrap: break-word; /* Ensure long text breaks properly */
+    line-height: 1.5;
+    /* Ensure readability on mobile */
+    word-wrap: break-word;
+    /* Ensure long text breaks properly */
 }
 
 /* Question image container */
 .questionImageContainer {
-    width: 100%; /* Full width on mobile */
-    height: auto; /* Adjust height for image aspect ratio */
-    margin: 10px 0; /* Add margin for spacing */
+    width: 100%;
+    /* Full width on mobile */
+    height: auto;
+    /* Adjust height for image aspect ratio */
+    margin: 10px 0;
+    /* Add margin for spacing */
 }
 
 .questionImage {
-    width: 100%; /* Full width for images */
-    height: auto; /* Maintain image aspect ratio */
+    width: 100%;
+    /* Full width for images */
+    height: auto;
+    /* Maintain image aspect ratio */
 }
 
 /* Container for the questions */
@@ -63,9 +76,12 @@
 /* Button container fixed at the bottom */
 .buttonContainer {
     position: fixed;
-    bottom: 10px; /* Ensure the button stays at the bottom */
-    width: 90%; /* Make the button wide enough for mobile screens */
-    height: 50px; /* Reduced height for smaller screens */
+    bottom: 10px;
+    /* Ensure the button stays at the bottom */
+    width: 90%;
+    /* Make the button wide enough for mobile screens */
+    height: 50px;
+    /* Reduced height for smaller screens */
     margin-bottom: 10px;
 }
 
@@ -88,6 +104,7 @@
 
     .innerLayout h1 {
         font-size: 18px;
+        text-align: center;
     }
 
     .buttonContainer {
@@ -98,12 +115,30 @@
 
 /* Media query for tablets or larger screens (min-width: 768px) */
 @media (min-width: 768px) {
+    .questionImageContainer {
+        width: 100%;
+        /* Full width on mobile */
+        height: auto;
+        /* Adjust height for image aspect ratio */
+        margin: 10px 0;
+        /* Add margin for spacing */
+    }
+
+    .questionImage {
+        width: 40%;
+        /* Full width for images */
+        height: auto;
+        /* Maintain image aspect ratio */
+    }
+
     .questionMainDiv {
-        width: 100%; /* Reduce width to center it on tablets */
+        width: 100%;
+        /* Reduce width to center it on tablets */
     }
 
     .innerLayout h1 {
-        font-size: 20px; /* Increase font size for tablets */
+        font-size: 20px;
+        /* Increase font size for tablets */
     }
 
     .circularProgressBarContainer {
@@ -112,7 +147,8 @@
     }
 
     .buttonContainer {
-        width: 80%; /* Reduce width on larger screens */
+        width: 80%;
+        /* Reduce width on larger screens */
         height: 60px;
     }
 }

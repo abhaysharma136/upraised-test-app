@@ -8,7 +8,7 @@ export default function QuestionBox({
 }) {
   return (
     <label
-      className={styles.questionBox}
+      // className={styles.questionBox}
       onClick={() => onOptionChange(option)}
     >
       <div className={styles.questionBox}>

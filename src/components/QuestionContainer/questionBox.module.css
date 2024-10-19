@@ -32,7 +32,7 @@ input[type="radio"] {
     margin-left: 25px;
 }
 
-nput[type="radio"]:checked {
+input[type="radio"]:checked {
     background-color: green;
     /* Background color when checked */
 }
@@ -54,4 +54,8 @@ input[type="radio"]:checked:before {
     background-color: green;
     transform: translate(-50%, -50%) scale(0.9);
     /* Shrink the inner circle when checked */
+}
+
+.questionBox:has(input:checked) {
+    border: 2px solid green;
 }

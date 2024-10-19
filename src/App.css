@@ -14,3 +14,8 @@
   height: 100vh;
   width: 100vw;
 }
+
+@font-face {
+  font-family: 'nunito-italic';
+  src: url('../src/assets/fonts/Nunito-Italic-VariableFont_wght.ttf');
+}
